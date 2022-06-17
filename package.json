@@ -2,15 +2,23 @@
   "name": "aadhar-backend",
   "version": "1.0.0",
   "description": "Backend for Aadhar Application",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "Aadhar-Backend",
     "Aadhar",
-    "Aadhar-Booking"
+    "Aadhar-Project",
+    "MERN-aadhar"
   ],
   "author": "Shubham Maurya",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.8"
+  }
 }
