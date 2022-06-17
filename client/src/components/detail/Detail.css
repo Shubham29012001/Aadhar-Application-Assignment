@@ -1,0 +1,19 @@
+h1 {
+  text-align: center;
+}
+
+h3 {
+  font-size: 20px;
+  margin-top: 3px;
+  font-weight: bold;
+  padding: 0.8rem;
+}
+
+span {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.btn {
+  float: right;
+}
