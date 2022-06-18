@@ -2,6 +2,19 @@ const express = require("express");
 const users = require("../models/userSchema");
 const router = express.Router();
 
+router.post("/login", async (req, res) => {
+  const user = await users.findOne({
+    email: req.body.email,
+    password: req.body.password,
+  });
+
+  if (user) {
+    res.status(201).json(user);
+  } else {
+    res.status(422).json({ status: "Invalid Credentials", user: false });
+  }
+});
+
 router.post("/register", async (req, res) => {
   const {
     firstName,
@@ -31,6 +44,7 @@ router.post("/register", async (req, res) => {
 
     const preUser = await users.findOne({ phone: phoneNumber });
     const preAadhar = await users.findOne({ aadhar: aadharNumber });
+    const type = "user";
 
     if (preUser || preAadhar) {
       res
@@ -46,6 +60,7 @@ router.post("/register", async (req, res) => {
         password: password,
         address: homeAddress,
         aadhar: aadharNumber,
+        type: type,
       });
 
       await newUser.save();
@@ -77,4 +92,28 @@ router.get("/getIndividualData/:id", async (req, res) => {
   }
 });
 
+router.patch("/updateUser/:id", async (req, res) => {
+  try {
+    console.log(req.body);
+    const { id } = req.params;
+    const updateUser = await users.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+    console.log(updateUser);
+    res.status(201).json(updateUser);
+  } catch (error) {
+    res.status(422).json({ message: error });
+  }
+});
+
+router.delete("/deleteUser/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleteUser = await users.findByIdAndDelete({ _id: id });
+
+    res.status(201).json(deleteUser);
+  } catch (error) {
+    res.status(422).json({ message: error });
+  }
+});
 module.exports = router;
