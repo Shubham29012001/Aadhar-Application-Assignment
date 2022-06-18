@@ -102,19 +102,21 @@ const Detail = () => {
               <CardContent>
                 <div className="row">
                   <div className="right_view col-12 col-lg-12 col-md-12">
-                    <div className="add_btn">
-                      <NavLink to={`/edit/${getUserData._id}`}>
-                        <button className="btn btn-primary mx-2">
-                          <EditIcon />
+                    {loginData.type === "admin" && (
+                      <div className="add_btn">
+                        <NavLink to={`/edit/${getUserData._id}`}>
+                          <button className="btn btn-primary mx-2">
+                            <EditIcon />
+                          </button>
+                        </NavLink>
+                        <button
+                          className="btn btn-danger mx-2"
+                          onClick={() => deleteUser(getUserData._id)}
+                        >
+                          <DeleteIcon />
                         </button>
-                      </NavLink>
-                      <button
-                        className="btn btn-danger mx-2"
-                        onClick={() => deleteUser(getUserData._id)}
-                      >
-                        <DeleteIcon />
-                      </button>
-                    </div>
+                      </div>
+                    )}
                     <h3>
                       <BadgeIcon /> Name:{" "}
                       <span>{getUserData.first + " " + getUserData.last}</span>

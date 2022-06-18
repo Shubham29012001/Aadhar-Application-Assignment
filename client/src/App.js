@@ -45,11 +45,10 @@ function App() {
             <Route exact path="/edit/:id" element={<Edit />} />
           </>
         ) : (
-          <>
-            <Route exact path="/view/:id" element={<Detail />} />
-            <Route exact path="/*" element={<Error />} />
-          </>
+          <></>
         )}
+        <Route exact path="/view/:id" element={<Detail />} />
+        <Route exact path="/*" element={<Error />} />
       </Routes>
     </>
   );
