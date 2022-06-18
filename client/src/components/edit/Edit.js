@@ -1,11 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+
+// Importing updateContext Provider
+
 import { updateData } from "../context/ContextProvider";
 
 const Edit = () => {
   const history = useNavigate("");
 
   const [updateUserData, setupdateUserData] = useContext(updateData);
+
+  // State to Store and Set All Input Values
 
   const [inputValue, setinputValue] = useState({
     first: "",
@@ -16,6 +21,8 @@ const Edit = () => {
     password: "",
     address: "",
   });
+
+  // Set State with Each Key Press
 
   const setData = (e) => {
     console.log(e.target.value);
@@ -31,6 +38,8 @@ const Edit = () => {
   };
 
   const { id } = useParams("");
+
+  // Get Individual Data from Backend
 
   const getIndividualData = async () => {
     const res = await fetch(`http://localhost:8080/getIndividualData/${id}`, {
@@ -54,6 +63,8 @@ const Edit = () => {
   useEffect(() => {
     getIndividualData();
   }, []);
+
+  // Update User Information in Backend
 
   const updateUser = async (e) => {
     e.preventDefault();

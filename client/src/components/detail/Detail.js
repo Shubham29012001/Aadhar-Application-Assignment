@@ -3,6 +3,8 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import "./Detail.css";
 
+// Importing All Material UI Icons
+
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -10,19 +12,28 @@ import HomeIcon from "@mui/icons-material/Home";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import BadgeIcon from "@mui/icons-material/Badge";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
+
 import { useParams, NavLink, useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
+
+// Importing Login Context
+
 import { loginContext } from "../context/ContextProvider";
 
 const Detail = () => {
   const { id } = useParams("");
 
   const [loginData, setloginData] = useContext(loginContext);
+
+  // Storing Value of LoggedIn User ID for Future Reference
+
   const userLoginID = loginData._id;
 
   const history = useNavigate("");
   const [getUserData, setUserData] = useState([]);
   const [getID, setID] = useState("");
+
+  // Get Individual User Data Details from Backend
 
   const getIndividualData = async () => {
     const res = await fetch(`http://localhost:8080/getIndividualData/${id}`, {
@@ -47,6 +58,8 @@ const Detail = () => {
     setID(userLoginID);
   }, []);
 
+  // Delete User Details in Backend from Detail Page Icon
+
   const deleteUser = async (id) => {
     const deleteResponse = await fetch(
       `http://localhost:8080/deleteUser/${id}`,
@@ -67,6 +80,8 @@ const Detail = () => {
       alert("Error Occured");
     }
   };
+
+  // Return the User Details if ID gets Matched with loginContext ID value else Show Unauthorized Access
 
   if (getID === id) {
     return (

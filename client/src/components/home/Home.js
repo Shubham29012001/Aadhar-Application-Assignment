@@ -14,9 +14,13 @@ import {
 const Home = () => {
   const [getUserData, setUserData] = useState([]);
 
+  // Using Context Values
+
   const [userData, setuserData] = useContext(addData);
   const [updateUserData, setupdateUserData] = useContext(updateData);
   const [deleteUserData, setdeleteUserData] = useContext(deleteUserDataContext);
+
+  // Get All Users Data from Backend
 
   const getUsersData = async (e) => {
     const res = await fetch("http://localhost:8080/getUsersData", {
@@ -40,6 +44,8 @@ const Home = () => {
   useEffect(() => {
     getUsersData();
   }, []);
+
+  // Delete Users in Backend
 
   const deleteUser = async (id) => {
     const deleteResponse = await fetch(
@@ -130,6 +136,10 @@ const Home = () => {
               Add Users
             </NavLink>
           </div>
+
+          {
+            // Rendering Each User Details in Table Format
+          }
 
           <table className="table mt-5">
             <thead>

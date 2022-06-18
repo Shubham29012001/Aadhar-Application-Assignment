@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+// User Schema making Phone Number and Aadhar Key as Unique
+
 const userSchema = new mongoose.Schema({
   first: {
     type: String,
