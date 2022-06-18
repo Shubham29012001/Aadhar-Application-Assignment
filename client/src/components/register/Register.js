@@ -1,6 +1,10 @@
-import React, { useState } from "react";
-
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { addData } from "../context/ContextProvider";
 const Register = () => {
+  const history = useNavigate("");
+
+  const [userData, setuserData] = useContext(addData);
   const [inputValue, setinputValue] = useState({
     firstName: "",
     lastName: "",
@@ -56,7 +60,8 @@ const Register = () => {
     const dataResponse = await res.json();
 
     if (res.status === 201) {
-      alert("Data Submit");
+      history("/admin");
+      setuserData(dataResponse);
     } else {
       alert(dataResponse.message);
       console.log(dataResponse.message);
