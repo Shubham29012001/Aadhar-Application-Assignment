@@ -1,7 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { updateData } from "../context/ContextProvider";
 
 const Edit = () => {
+  const history = useNavigate("");
+
+  const [updateUserData, setupdateUserData] = useContext(updateData);
+
   const [inputValue, setinputValue] = useState({
     first: "",
     last: "",
@@ -50,9 +55,42 @@ const Edit = () => {
     getIndividualData();
   }, []);
 
+  const updateUser = async (e) => {
+    e.preventDefault();
+
+    const { first, last, dob, phone, email, password, address } = inputValue;
+
+    const updateResponse = await fetch(
+      `http://localhost:8080/updateUser/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          first,
+          last,
+          dob,
+          phone,
+          email,
+          password,
+          address,
+        }),
+      }
+    );
+
+    const dataUpdateResponse = await updateResponse.json();
+    if (updateResponse.status === 201) {
+      setupdateUserData(dataUpdateResponse);
+      history("/admin");
+    } else {
+      alert("Enter Complete Data");
+    }
+  };
+
   return (
     <div className="container mt-3 mb-4">
-      <form>
+      <form onSubmit={updateUser}>
         <div className="row">
           <div className="mb-3 col-lg-6 col-md-6 col-12">
             <label htmlFor="first" className="form-label">
