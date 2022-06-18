@@ -35,6 +35,10 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  type: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("User", userSchema);
