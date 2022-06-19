@@ -86,7 +86,7 @@ const Detail = () => {
 
   // Return the User Details if ID gets Matched with loginContext ID value else Show Unauthorized Access
 
-  if (getID === id) {
+  if (getID === id || loginData.type === "admin") {
     return (
       <div className="container mt-3">
         <h1 style={{ fontWeight: 400 }}>
