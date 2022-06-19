@@ -41,21 +41,24 @@ const Register = () => {
       homeAddress,
     } = inputValue;
 
-    const res = await fetch("http://localhost:8080/register", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        firstName,
-        lastName,
-        dob,
-        phoneNumber,
-        email,
-        password,
-        homeAddress,
-      }),
-    });
+    const res = await fetch(
+      "https://aadhar-application-system.herokuapp.com/register",
+      {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          dob,
+          phoneNumber,
+          email,
+          password,
+          homeAddress,
+        }),
+      }
+    );
 
     const dataResponse = await res.json();
 

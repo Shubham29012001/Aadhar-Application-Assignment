@@ -23,7 +23,7 @@ mongoose
     useNewUrlParser: true,
   })
   .then((result) => {
-    server.listen(8080);
+    server.listen(process.env.PORT || 8080);
     console.log("Server Started!");
   })
   .catch((err) => {

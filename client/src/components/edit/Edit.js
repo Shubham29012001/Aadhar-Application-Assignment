@@ -42,12 +42,15 @@ const Edit = () => {
   // Get Individual Data from Backend
 
   const getIndividualData = async () => {
-    const res = await fetch(`http://localhost:8080/getIndividualData/${id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      `https://aadhar-application-system.herokuapp.com/getIndividualData/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     const dataResponse = await res.json();
 
@@ -72,7 +75,7 @@ const Edit = () => {
     const { first, last, dob, phone, email, password, address } = inputValue;
 
     const updateResponse = await fetch(
-      `http://localhost:8080/updateUser/${id}`,
+      `https://aadhar-application-system.herokuapp.com/updateUser/${id}`,
       {
         method: "PATCH",
         headers: {

@@ -32,16 +32,19 @@ const Login = () => {
 
     const { email, password } = inputValue;
 
-    const res = await fetch("http://localhost:8080/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
+    const res = await fetch(
+      "https://aadhar-application-system.herokuapp.com/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      }
+    );
 
     const dataResponse = await res.json();
 

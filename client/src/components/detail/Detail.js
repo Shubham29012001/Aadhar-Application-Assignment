@@ -36,12 +36,15 @@ const Detail = () => {
   // Get Individual User Data Details from Backend
 
   const getIndividualData = async () => {
-    const res = await fetch(`http://localhost:8080/getIndividualData/${id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      `https://aadhar-application-system.herokuapp.com/getIndividualData/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     const dataResponse = await res.json();
 
@@ -62,7 +65,7 @@ const Detail = () => {
 
   const deleteUser = async (id) => {
     const deleteResponse = await fetch(
-      `http://localhost:8080/deleteUser/${id}`,
+      `https://aadhar-application-system.herokuapp.com/deleteUser/${id}`,
       {
         method: "DELETE",
         headers: {
