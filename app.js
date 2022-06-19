@@ -17,6 +17,14 @@ app.use(cors());
 app.use(express.json());
 app.use(router);
 
+// Serving Build Files for Production
+
+app.use(express.static(path.join(__dirname, "/client/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/client/build", "index.html"));
+});
+
 mongoose
   .connect(api_key.MONGODB_URI, {
     useUnifiedTopology: true,
